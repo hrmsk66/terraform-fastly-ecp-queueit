@@ -12,7 +12,7 @@ Start by creating a directory in your Compute@Edge project root directory and cr
 mkdir tf && touch tf/main.tf
 ```
 
-Next add the following code to the main.tf file:
+An example .tf file:
 
 ```hcl
 provider "aws" {
@@ -20,13 +20,37 @@ provider "aws" {
 }
 
 locals {
-  domain = "www.hkakehas.tokyo"
-  dns_zone = "hkakehas.tokyo"
+  service_name = "my-queueit-connector"
+
+  domain = "my.example.com"
+
+  dns_zone = "example.com"
+
+  queueit_hostname = "my-customer-id.queue-it.net?ref=latest"
+
+  dictionary = {
+    name = "integrationConfiguration"
+
+    items = {
+      "apiKey"        = "XXX"
+      "customerId"    = "XXX"
+      "queueItOrigin" = "queue-it"
+      "secret"        = "XXX"
+    }
+  }
 }
 
 module "service" {
-    source = "github.com/hkakehashi/terraform-fastly-queueitconn?ref=latest"
+    source = "github.com/hrmsk66/terraform-fastly-ecp-queueit"
+    service_name = local.service_name
     domain = local.domain
+    dns_zone = local.dns_zone
+    queueit_hostname = local.queueit_hostname
+    dictionary = local.dictionary
+}
+
+output "service" {
+    value = module.service.service
 }
 ```
 
