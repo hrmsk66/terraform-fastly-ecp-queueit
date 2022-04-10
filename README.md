@@ -26,7 +26,7 @@ locals {
 
   dns_zone = "example.com"
 
-  queueit_hostname = "my-customer-id.queue-it.net?ref=latest"
+  queueit_hostname = "my-customer-id.queue-it.net"
 
   dictionary = {
     name = "integrationConfiguration"
@@ -41,7 +41,7 @@ locals {
 }
 
 module "service" {
-    source = "github.com/hrmsk66/terraform-fastly-ecp-queueit"
+    source = "github.com/hrmsk66/terraform-fastly-ecp-queueit?ref=latest"
     service_name = local.service_name
     domain = local.domain
     dns_zone = local.dns_zone
