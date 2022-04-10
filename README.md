@@ -4,7 +4,7 @@ An example Terraform module that creates a Fastly service for the Queue-it conne
 
 In this example, we assume that the DNS records are added to Route 53.
 
-## Usage in a local environment
+## Usage
 
 Start by creating a directory in your Compute@Edge project root directory and create a .tf file in it.
 
