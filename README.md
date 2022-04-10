@@ -12,7 +12,7 @@ Start by creating a directory in your Compute@Edge project root directory and cr
 mkdir tf && touch tf/main.tf
 ```
 
-An example .tf file:
+Example of a .tf file:
 
 ```hcl
 provider "aws" {
